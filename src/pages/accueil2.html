@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet - Accueil</title>
+    <link rel="stylesheet" href="../css/pages/accueil.css">
+    <link rel="stylesheet" href="../css/components/menu.css">
+    <link rel="stylesheet" href="../css/components/modal.css">
+    <link rel="stylesheet" href="../css/components/card.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+    <header>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <h1>Accueil</h1>
+        <button class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            Se déconnecter
+        </button>
+    </header>
+
+    <nav class="menu">
+        <ul>
+            <li><a href="/profil">Mon profil</a></li>
+            <li>
+                <div class="search-container">
+                    <button id="toggle-filters" class="search-icon filter-btn">
+                        <i class="fas fa-filter"></i>
+                        Filtres de recherche
+                    </button>
+                    <div class="search-filters" style="display: none;">
+                        <div class="filters-row">
+                            <div class="filters-group">
+                                <label><input type="checkbox" id="search-title" checked> Titre</label>
+                                <label><input type="checkbox" id="search-content" checked> Contenu</label>
+                            </div>
+                        </div>
+                        <div class="filters-row">
+                            <label><input type="checkbox" id="search-hashtags" checked> Hashtags</label>
+                        </div>
+                    </div>
+                    <div class="search-input-wrapper">
+                        <input type="text" id="search-input" placeholder="Rechercher...">
+                        <button id="clear-search" class="search-icon">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <li><button id="publish-btn">Publier</button></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <div class="posts-container">
+            <!-- Les publications seront ajoutées dynamiquement ici -->
+        </div>
+    </main>
+
+    <!-- Modal de publication -->
+    <div id="modal_publish" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="post-form" class="modal-grid">
+                <div class="left-column">
+                    <div class="form-group">
+                        <input type="text" id="post-title" placeholder="Titre" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="post-content" placeholder="Votre texte ici (400 lignes max)" maxlength="12000" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="post-hashtags" placeholder="Hashtags (séparés par des espaces)">
+                    </div>
+                    <button type="submit">Publier</button>
+                </div>
+                <div class="right-column">
+                    <div class="form-group">
+                        <select id="post-category" required>
+                            <option value="">Sélectionner une catégorie</option>
+                            <option value="livre">Livre</option>
+                            <option value="scenario">Scénario</option>
+                            <option value="projet-participatif">Projet participatif</option>
+                            <option value="idee">Idée</option>
+                            <option value="poeme">Poème</option>
+                            <option value="histoire">Histoire</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="post-visibility" required>
+                            <option value="public">Public</option>
+                            <option value="private">Privé</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal des commentaires -->
+    <div id="modal-comment-accueil" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="comments-section">
+                <div class="comment-form">
+                    <textarea placeholder="Écrivez votre commentaire..."></textarea>
+                    <button class="send-comment">Envoyer</button>
+                </div>
+                <div class="comments-list">
+                    <!-- Les commentaires seront ajoutés dynamiquement ici -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/firebase-config.js"></script>
+    <script type="module" src="../js/menu.js"></script>
+    <script type="module" src="../js/modal.js"></script>
+    <script type="module" src="../js/pages/accueil2.js"></script>
+    <script type="module" src="../js/pages/comments2.js"></script>
+    <script type="module" src="../js/auth/logout.js"></script>
+    <script type="module" src="../js/search.js"></script>
+    <script type="module" src="../js/profile.js"></script>
+</body>
+</html> 

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Projet</title>
+    <link rel="stylesheet" href="../css/pages/login.css">
+    <link rel="stylesheet" href="../css/components/auth/auth-tabs.css">
+    <link rel="stylesheet" href="../css/components/modal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login-tab">Connexion</button>
+                <button class="tab-btn" data-tab="register-tab">Inscription</button>
+            </div>
+
+            <div class="tab-content" id="login-tab">
+                <form id="login-form">
+                    <div class="form-group">
+                        <input type="email" id="login-email" placeholder="Adresse email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="login-password" placeholder="Mot de passe" required>
+                    </div>
+                    <div class="error-message" id="login-error" style="display: none;">
+                        <p>Mot de passe incorrect</p>
+                        <button type="button" id="forgot-password-btn">Mot de passe oublié</button>
+                    </div>
+                    <div class="forgot-password-section" style="display: none;">
+                        <input type="email" id="recovery-email" placeholder="Adresse email de récupération">
+                        <button type="button" id="send-recovery-btn">Envoyer</button>
+                    </div>
+                    <button type="submit" class="auth-btn">Se connecter</button>
+                    
+                    <div class="separator">
+                        <span>ou</span>
+                    </div>
+                    
+                    <button type="button" id="google-login" class="google-btn">
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo">
+                        Se connecter avec Google
+                    </button>
+                </form>
+            </div>
+
+            <div class="tab-content" id="register-tab" style="display: none;">
+                <form id="register-form">
+                    <div class="form-group">
+                        <input type="text" id="register-firstname" placeholder="Prénom" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="register-lastname" placeholder="Nom" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="register-email" placeholder="Adresse email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="register-password" placeholder="Mot de passe" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="register-confirm-password" placeholder="Confirmer le mot de passe" required>
+                    </div>
+                    <button type="submit" class="auth-btn">S'inscrire</button>
+                    
+                    <div class="separator">
+                        <span>ou</span>
+                    </div>
+                    
+                    <button type="button" id="google-register" class="google-btn">
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo">
+                        S'inscrire avec Google
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal des cookies -->
+    <div id="modal_cookies" class="modal">
+        <div class="modal-content">
+            <h2>Paramètres des cookies et CGU</h2>
+            <p>Nous utilisons des cookies pour améliorer votre expérience sur notre site.</p>
+            
+            <div class="cookie-settings">
+                <div class="cookie-option">
+                    <div class="cookie-option-header">
+                        <h3>Cookies obligatoires</h3>
+                        <label class="toggle">
+                            <input type="checkbox" id="essential-cookies" checked disabled>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Ces cookies sont nécessaires au bon fonctionnement du site et ne peuvent pas être désactivés.</p>
+                </div>
+
+                <div class="cookie-option">
+                    <div class="cookie-option-header">
+                        <h3>Cookies d'analyse et de personnalisation</h3>
+                        <label class="toggle">
+                            <input type="checkbox" id="optional-cookies">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Ces cookies nous permettent d'améliorer votre expérience en analysant votre utilisation du site.</p>
+                </div>
+
+                <div class="cookie-option">
+                    <div class="cookie-option-header">
+                        <h3>Conditions Générales d'Utilisation</h3>
+                        <label class="toggle">
+                            <input type="checkbox" id="accept-cgu" required>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>En acceptant les CGU, vous vous engagez à :</p>
+                    <ul class="cgu-list">
+                        <li>Respecter les droits d'auteur et la propriété intellectuelle</li>
+                        <li>Ne pas publier de contenu plagié ou copié sans autorisation</li>
+                        <li>Ne pas publier de contenu offensant, discriminatoire ou illégal</li>
+                        <li>Respecter les autres utilisateurs et leurs créations</li>
+                    </ul>
+                    <button type="button" id="view-full-cgu" class="link-btn">Voir les CGU complètes</button>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button id="save-cookies" class="auth-btn" disabled>Accepter et continuer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal des CGU complètes -->
+    <div id="modal_cgu" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Conditions Générales d'Utilisation</h2>
+            <div class="cgu-content">
+                <h3>1. Objet</h3>
+                <p>Les présentes CGU régissent l'utilisation de notre plateforme de partage de créations littéraires.</p>
+
+                <h3>2. Propriété intellectuelle</h3>
+                <p>Tout contenu publié sur la plateforme reste la propriété de son auteur. Le plagiat est strictement interdit et peut entraîner la suppression du compte.</p>
+
+                <h3>3. Règles de publication</h3>
+                <p>Les utilisateurs s'engagent à :</p>
+                <ul>
+                    <li>Ne publier que du contenu original dont ils sont les auteurs</li>
+                    <li>Citer leurs sources en cas d'inspiration ou de référence</li>
+                    <li>Respecter les droits d'auteur des autres créateurs</li>
+                    <li>Ne pas copier ou reproduire le travail d'autrui sans autorisation</li>
+                </ul>
+
+                <h3>4. Sanctions</h3>
+                <p>Tout manquement à ces règles, notamment en cas de plagiat avéré, pourra entraîner :</p>
+                <ul>
+                    <li>La suppression du contenu concerné</li>
+                    <li>La suspension temporaire du compte</li>
+                    <li>La suppression définitive du compte</li>
+                    <li>Des poursuites légales le cas échéant</li>
+                </ul>
+            </div>
+            <div class="modal-actions">
+                <button class="auth-btn close-cgu">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/firebase-config.js"></script>
+    <script type="module" src="../js/auth/auth-tabs.js"></script>
+    <script type="module" src="../js/auth/auth-forms.js"></script>
+    <script type="module" src="../js/auth/cookies-manager.js"></script>
+</body>
+</html> 

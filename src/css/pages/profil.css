@@ -1,0 +1,561 @@
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #2c3e50;
+    --background-color: #f5f6fa;
+    --text-color: #333;
+    --border-color: #ddd;
+    --error-color: #f44336;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    min-height: 100vh;
+}
+
+/* Styles pour les onglets du profil */
+.profile-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.profile-tabs .tab-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--text-color);
+    position: relative;
+}
+
+.profile-tabs .tab-btn.active {
+    color: var(--primary-color);
+}
+
+.profile-tabs .tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+/* Styles pour le contenu des onglets */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Styles pour la zone de dépôt de photo */
+.profile-photo-upload {
+    margin-bottom: 2rem;
+}
+
+.drop-zone {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.drop-zone:hover {
+    border-color: #4CAF50;
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.drop-zone i {
+    font-size: 3rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.upload-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.upload-btn:hover {
+    background-color: #45a049;
+}
+
+.photo-preview {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 1rem auto;
+}
+
+.photo-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.remove-photo {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.remove-photo:hover {
+    background-color: #cc0000;
+}
+
+/* Styles pour les formulaires */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.save-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.delete-btn {
+    background-color: var(--error-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Styles pour les cartes de publication */
+.posts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card_profil {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 200px;
+    border: 1px solid #e0e0e0;
+    position: relative;
+}
+
+.card_profil:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.card_profil .card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card_profil .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin: 0;
+}
+
+.card_profil .card-meta {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.card_profil .card-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.card_profil .card-preview {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.5;
+}
+
+.card_profil .hashtags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.card_profil .hashtag {
+    background-color: #f0f2f5;
+    color: var(--primary-color);
+    padding: 0.2rem 0.5rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+}
+
+.card_profil .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.card_profil .post-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.card_profil .card-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.card_profil .action-btn {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.card_profil .action-btn:hover {
+    background-color: #f0f2f5;
+    color: var(--primary-color);
+}
+
+.card_profil .action-btn i {
+    font-size: 1rem;
+}
+
+.card_profil .like-btn.liked {
+    color: #e74c3c;
+}
+
+.card_profil .edit-btn:hover {
+    color: #f39c12;
+}
+
+.card_profil .delete-btn:hover {
+    color: #e74c3c;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .posts-container {
+        grid-template-columns: 1fr;
+        padding: 0.5rem;
+    }
+    
+    .card_profil {
+        margin: 0.5rem 0;
+    }
+
+    .card_profil .card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .card_profil .post-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Styles pour le bouton de modification */
+.edit-post {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.edit-post:hover {
+    background-color: rgba(74, 144, 226, 0.1);
+    border-radius: 5px;
+}
+
+.edit-post i {
+    font-size: 1.1rem;
+}
+
+/* Styles pour la modal de modification */
+#save-edit {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+#save-edit:hover {
+    background-color: #357abd;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .modal-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .edit-post {
+        padding: 0.3rem;
+    }
+    
+    .edit-post i {
+        font-size: 1rem;
+    }
+}
+
+/* Styles pour le bouton Voir plus */
+.see-more {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    margin-top: 1rem;
+    background-color: var(--background-color);
+    border-radius: 5px;
+}
+
+.see-more:hover {
+    background-color: rgba(74, 144, 226, 0.1);
+}
+
+.see-more i {
+    transition: transform 0.3s ease;
+}
+
+.card-preview {
+    position: relative;
+}
+
+.card-preview::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(transparent, white);
+    pointer-events: none;
+}
+
+.card-preview.expanded::after {
+    display: none;
+}
+
+/* Styles pour le header */
+header {
+    background-color: white;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+header h1 {
+    flex: 1;
+    text-align: center;
+    margin: 0;
+    color: var(--secondary-color);
+}
+
+.menu-toggle {
+    width: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-spacer {
+    width: 40px;
+}
+
+/* Ajustement du contenu principal pour le header fixe */
+.content {
+    margin-top: 4rem;
+    padding: 20px;
+    margin-bottom: 100px; /* Espace pour le footer */
+}
+
+/* Styles pour les boutons d'action */
+.card-actions {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    justify-content: flex-end;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background: none;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+.action-btn:hover {
+    background-color: rgba(74, 144, 226, 0.1);
+}
+
+.action-btn i {
+    color: var(--primary-color);
+}
+
+.see-more {
+    color: var(--primary-color);
+}
+
+.edit-post {
+    color: var(--primary-color);
+}
+
+.delete-post {
+    color: var(--error-color);
+}
+
+.delete-post i {
+    color: var(--error-color);
+}
+
+.card-preview {
+    max-height: 100px;
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.3s ease;
+}
+
+.card-preview.expanded {
+    max-height: none;
+}
+
+.card-preview::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(transparent, white);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.card-preview.expanded::after {
+    opacity: 0;
+}
+
+.posts-container {
+    max-width: 800px;
+    margin: 0 auto;
+} 
