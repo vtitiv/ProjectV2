@@ -1,0 +1,194 @@
+:root {
+    --primary-color: #4a90e2;
+    --error-color: #e74c3c;
+    --text-color: #333;
+    --background-color: #f5f6fa;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    padding: 2rem;
+}
+
+.auth-tabs {
+    display: flex;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #eee;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    background: none;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.auth-btn:hover {
+    background-color: #357abd;
+}
+
+.error-message {
+    color: var(--error-color);
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.error-message button {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    margin: 0.5rem;
+    text-decoration: underline;
+}
+
+.forgot-password-section {
+    margin-top: 1rem;
+}
+
+#send-recovery-btn {
+    margin-top: 0.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .auth-container {
+        width: 95%;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-container {
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+    }
+}
+
+/* Styles pour le séparateur */
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.separator span {
+    padding: 0 10px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Styles pour le bouton Google */
+.google-btn {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: white;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.google-btn:hover {
+    background-color: #f5f5f5;
+}
+
+.google-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Media Queries */
+@media (max-width: 480px) {
+    .google-btn {
+        font-size: 0.9rem;
+    }
+} 

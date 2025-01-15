@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet - Accueil</title>
+    
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="slfxkM11zReckyTabUsyFm4Te4O0cEp_Yk_efZb-Jrs" />
+    
+    <!-- Google AdSense Verification -->
+    <meta name="google-adsense-account" content="ca-pub-5765285236529812">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5765285236529812"
+     crossorigin="anonymous"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/pages/accueil.css">
+    <link rel="stylesheet" href="../css/components/menu.css">
+    <link rel="stylesheet" href="../css/components/modal.css">
+    <link rel="stylesheet" href="../css/components/card.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/components/ad-sidebar.css">
+    
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <h1>Accueil</h1>
+        <button class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            Se déconnecter
+        </button>
+    </header>
+
+    <nav class="menu">
+        <ul>
+            <li><a href="/profil">Mon profil</a></li>
+            <li>
+                <div class="search-container">
+                    <button id="toggle-filters" class="search-icon filter-btn">
+                        <i class="fas fa-filter"></i>
+                        Filtres de recherche
+                    </button>
+                    <div class="search-filters" style="display: none;">
+                        <div class="filters-row">
+                            <div class="filters-group">
+                                <label><input type="checkbox" id="search-title" checked> Titre</label>
+                                <label><input type="checkbox" id="search-content" checked> Contenu</label>
+                            </div>
+                        </div>
+                        <div class="filters-row">
+                            <label><input type="checkbox" id="search-hashtags" checked> Hashtags</label>
+                        </div>
+                    </div>
+                    <div class="search-input-wrapper">
+                        <input type="text" id="search-input" placeholder="Rechercher...">
+                        <button id="clear-search" class="search-icon">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <li><button id="publish-btn">Publier</button></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <div class="posts-container">
+            <!-- Les publications seront ajoutées dynamiquement ici -->
+        </div>
+    </main>
+
+    <!-- Modal de publication -->
+    <div id="modal_publish" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="post-form" class="modal-grid">
+                <div class="left-column">
+                    <div class="form-group">
+                        <input type="text" id="post-title" placeholder="Titre" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="post-content" placeholder="Votre texte ici (400 lignes max)" maxlength="12000" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="post-hashtags" placeholder="Hashtags (séparés par des espaces)">
+                    </div>
+                    <button type="submit">Publier</button>
+                </div>
+                <div class="right-column">
+                    <div class="form-group">
+                        <select id="post-category" required>
+                            <option value="">Sélectionner une catégorie</option>
+                            <option value="livre">Livre</option>
+                            <option value="scenario">Scénario</option>
+                            <option value="projet-participatif">Projet participatif</option>
+                            <option value="idee">Idée</option>
+                            <option value="poeme">Poème</option>
+                            <option value="histoire">Histoire</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="post-visibility" required>
+                            <option value="public">Public</option>
+                            <option value="private">Privé</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal des commentaires -->
+    <div id="modal-comment-accueil" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="comments-section">
+                <div class="comment-form">
+                    <textarea placeholder="Écrivez votre commentaire..."></textarea>
+                    <button class="send-comment">Envoyer</button>
+                </div>
+                <div class="comments-list">
+                    <!-- Les commentaires seront ajoutés dynamiquement ici -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <button id="footer-cgu" class="footer-btn">Conditions Générales d'Utilisation</button>
+            <button id="footer-contact" class="footer-btn">Nous contacter</button>
+        </div>
+    </footer>
+
+    <!-- Modal de contact -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Nous contacter</h2>
+            <form id="contact-form" class="contact-form">
+                <div class="user-info">
+                    Vous nous contactez en tant que : <span id="contact-user-info"></span>
+                </div>
+                <textarea id="contact-message" placeholder="Votre message..." required></textarea>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary cancel-btn">Annuler</button>
+                    <button type="submit" class="btn-primary">Envoyer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal des CGU -->
+    <div id="modal_cgu" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Conditions Générales d'Utilisation</h2>
+            <div class="cgu-content">
+                <h3>1. Objet</h3>
+                <p>Les présentes CGU régissent l'utilisation de notre plateforme de partage de créations littéraires.</p>
+
+                <h3>2. Propriété intellectuelle</h3>
+                <p>Tout contenu publié sur la plateforme reste la propriété de son auteur. Le plagiat est strictement interdit et peut entraîner la suppression du compte.</p>
+
+                <h3>3. Règles de publication</h3>
+                <p>Les utilisateurs s'engagent à :</p>
+                <ul>
+                    <li>Ne publier que du contenu original dont ils sont les auteurs</li>
+                    <li>Citer leurs sources en cas d'inspiration ou de référence</li>
+                    <li>Respecter les droits d'auteur des autres créateurs</li>
+                    <li>Ne pas copier ou reproduire le travail d'autrui sans autorisation</li>
+                </ul>
+
+                <h3>4. Sanctions</h3>
+                <p>Tout manquement à ces règles, notamment en cas de plagiat avéré, pourra entraîner :</p>
+                <ul>
+                    <li>La suppression du contenu concerné</li>
+                    <li>La suspension temporaire du compte</li>
+                    <li>La suppression définitive du compte</li>
+                    <li>Des poursuites légales le cas échéant</li>
+                </ul>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-primary close-cgu">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/firebase-config.js"></script>
+    <script type="module" src="../js/menu.js"></script>
+    <script type="module" src="../js/modal.js"></script>
+    <script type="module" src="../js/pages/accueil.js"></script>
+    <script type="module" src="../js/comments2.js"></script>
+    <script type="module" src="../js/auth/logout.js"></script>
+    <script type="module" src="../js/search.js"></script>
+    <script type="module" src="../js/posts.js"></script>
+    <script type="module" src="/js/components/footer.js"></script>
+    <link rel="stylesheet" href="/css/components/footer.css">
+
+    <aside class="ad-sidebar">
+        <h3>La publicité nous permet de faire vivre le site</h3>
+        <div class="ad-content">
+            <!-- Bloc publicitaire AdSense -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-5765285236529812"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        <div class="ad-actions">
+            <a href="https://www.google.com/adsense/start/" target="_blank" class="btn-primary">
+                <i class="fas fa-plus"></i> Créer une annonce
+            </a>
+        </div>
+    </aside>
+</body>
+</html> 

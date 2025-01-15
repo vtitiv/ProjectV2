@@ -1,0 +1,67 @@
+/* Footer */
+.footer {
+    background-color: #f8f9fa;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    border-top: 1px solid #dee2e6;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.footer-btn {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+}
+
+.footer-btn:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Modal de contact */
+#contact-modal .modal-content {
+    max-width: 500px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-form textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 0.5rem;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.contact-form .user-info {
+    color: #666;
+    font-size: 0.9rem;
+    background-color: #f8f9fa;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.contact-form button {
+    align-self: flex-end;
+} 
